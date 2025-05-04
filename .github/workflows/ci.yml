@@ -46,6 +46,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}
           labels: |
             org.opencontainers.image.title="php-devcontainer"
             org.opencontainers.image.vendor="act coding GbR"
@@ -61,7 +62,7 @@ jobs:
         with:
           context: src
           file: src/Dockerfile
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           push: ${{ github.event_name != 'pull_request' }}
           cache-from: type=gha
