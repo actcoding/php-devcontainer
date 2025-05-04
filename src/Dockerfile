@@ -28,6 +28,7 @@ RUN install-php-extensions \
         opcache \
         pcntl \
         zip \
+        intl \
     && \
     mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" && \
     curl -sSL https://getcomposer.org/installer | php && \
