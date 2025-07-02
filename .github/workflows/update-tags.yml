@@ -1,0 +1,52 @@
+name: Update Supported Tags list
+
+on:
+  registry_package:
+    types:
+      - published
+  push:
+    branches:
+      - main
+    paths:
+      - README.md.tpl
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: read
+    outputs:
+      tags: tags
+    steps:
+      - name: Install skopeo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y skopeo
+
+      - name: Login to ${{ env.REGISTRY }}
+        run: |
+          skopeo login -u ${{ github.actor }} -p ${{ github.token }} ghcr.io
+
+      - uses: actions/checkout@v4
+        with:
+          token: "${{ github.token }}"
+
+      - name: Fetch tags
+        run: |
+          skopeo list-tags --override-os linux \
+            docker://${{ env.REGISTRY }}/${{ github.repository }} \|
+          jq '.Tags | map(select(test("^[\\d.]+"))) | sort | reverse' |\
+          gomplate -f README.md.tpl -o README.md -d "data=stdin:?type=application/array%2Bjson"
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit --no-interactive -m "docs: update README.md"
+          git push
