@@ -17,6 +17,7 @@ RUN apt-get update && \
         sudo \
         zsh \
         locales \
+        nano \
     && \
     locale-gen
 
