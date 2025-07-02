@@ -47,7 +47,7 @@ jobs:
       - name: Fetch tags
         run: |
           skopeo list-tags --override-os linux \
-            docker://${{ env.REGISTRY }}/${{ github.repository }} \|
+            "docker://${{ env.REGISTRY }}/${{ github.repository }}" |\
           jq '.Tags | map(select(test("^[\\d.]+"))) | sort | reverse' |\
           gomplate -f README.md.tpl -o README.md -d "data=stdin:?type=application/array%2Bjson"
 
