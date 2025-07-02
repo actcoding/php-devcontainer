@@ -4,7 +4,9 @@
 
 ## Supported tags
 
-- <no value>
+- 8.4
+- 8.3
+- 8.2
 
 ## Contents
 
