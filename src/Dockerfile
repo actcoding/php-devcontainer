@@ -49,7 +49,3 @@ RUN curl --proto '=https' --tlsv1.2 -LsSf https://starship.rs/install.sh | sh -s
     mkdir -p "${HOME}/.cache" "${HOME}/.local"
 
 VOLUME [ "/home/vscode/.cache", "/home/vscode/.local" ]
-SHELL [ "/bin/zsh" ]
-WORKDIR "/home/vscode"
-
-CMD [ "/bin/zsh", "--login" ]
