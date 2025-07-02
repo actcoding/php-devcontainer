@@ -53,3 +53,7 @@ RUN curl -sSL https://getcomposer.org/installer |\
     mkdir -p "${HOME}/.cache" "${HOME}/.local"
 
 VOLUME [ "/home/vscode/.cache", "/home/vscode/.local" ]
+SHELL [ "/bin/zsh" ]
+WORKDIR "/home/vscode"
+
+CMD [ "/bin/zsh", "--login" ]
