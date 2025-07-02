@@ -30,10 +30,7 @@ RUN install-php-extensions \
         zip \
         intl \
     && \
-    mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" && \
-    curl -sSL https://getcomposer.org/installer | php && \
-    chmod +x composer.phar && \
-    mv composer.phar /usr/local/bin/composer
+    mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 RUN groupadd -g 1001 vscode && \
     useradd -s /bin/zsh -m -u 1001 -g vscode vscode && \
@@ -42,7 +39,13 @@ RUN groupadd -g 1001 vscode && \
 
 USER vscode
 
-RUN curl --proto '=https' --tlsv1.2 -LsSf https://starship.rs/install.sh | sh -s -- --yes && \
+RUN curl -sSL https://getcomposer.org/installer |\
+        php -- \
+        --no-ansi \
+        --install-dir="${HOME}/bin" \
+        --filename="composer" \
+    && \
+    curl --proto '=https' --tlsv1.2 -LsSf https://starship.rs/install.sh | sh -s -- --yes && \
     curl --proto '=https' --tlsv1.2 -LsSf https://github.com/atuinsh/atuin/releases/latest/download/atuin-installer.sh | ATUIN_NO_MODIFY_PATH=1 sh && \
     mv ${HOME}/.atuin/bin/* "${HOME}/bin" && \
     rm -rf "${HOME}/.atuin" && \
