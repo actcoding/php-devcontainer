@@ -29,9 +29,12 @@ jobs:
           sudo apt-get install -y skopeo
 
       - name: Install gomplate
+        env:
+          BINARY: /usr/local/bin/gomplate
         run: |
-          sudo curl -o /usr/local/bin/gomplate -sSL \
+          sudo curl -o "${{ env.BINARY }}" -sSL \
             https://github.com/hairyhenderson/gomplate/releases/latest/download/gomplate_linux-amd64
+          sudo chmod +x "${{ env.BINARY }}"
 
       - name: Login to ${{ env.REGISTRY }}
         run: |
