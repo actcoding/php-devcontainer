@@ -13,7 +13,6 @@ RUN apt-get update && \
         jq \
         git \
         p7zip-full \
-        openjdk-17-jre \
         sudo \
         zsh \
         locales \
