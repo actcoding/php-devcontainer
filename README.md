@@ -28,9 +28,3 @@
 - pcntl
 - zip
 - intl
-
-### Language Server
-
-[phpactor/phpactor](https://github.com/phpactor/phpactor)
-
-The binary lives at `/opt/phpactor/bin/phpactor`
