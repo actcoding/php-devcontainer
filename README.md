@@ -28,3 +28,9 @@
 - pcntl
 - zip
 - intl
+
+## Ready-to-use devcontainer template
+
+We also maintain a ready-to-use devcontainer template repository for you to quickstart Php development.
+
+The template lives in [actcoding/php-devcontainer-template](https://github.com/actcoding/php-devcontainer-template)
