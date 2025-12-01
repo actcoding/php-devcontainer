@@ -40,7 +40,7 @@ jobs:
         run: |
           skopeo login -u ${{ github.actor }} -p ${{ github.token }} ghcr.io
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           token: "${{ github.token }}"
 
