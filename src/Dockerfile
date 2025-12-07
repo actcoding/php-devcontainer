@@ -42,8 +42,7 @@ RUN groupadd -g 1001 vscode && \
 
 USER vscode
 
-RUN curl https://frankenphp.dev/install.sh | BIN_DIR="${HOME}/bin" sh && \
-    curl --proto '=https' --tlsv1.2 -LsSf https://starship.rs/install.sh | sh -s -- --yes && \
+RUN curl --proto '=https' --tlsv1.2 -LsSf https://starship.rs/install.sh | sh -s -- --yes && \
     curl --proto '=https' --tlsv1.2 -LsSf https://github.com/atuinsh/atuin/releases/latest/download/atuin-installer.sh | ATUIN_NO_MODIFY_PATH=1 sh && \
     mv ${HOME}/.atuin/bin/* "${HOME}/bin" && \
     rm -rf "${HOME}/.atuin" && \
