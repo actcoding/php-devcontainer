@@ -42,8 +42,8 @@ RUN groupadd -g 1001 vscode && \
 
 USER vscode
 
-RUN curl --proto '=https' --tlsv1.2 -LsSf https://starship.rs/install.sh | sh -s -- --yes && \
-    curl --proto '=https' --tlsv1.2 -LsSf https://github.com/atuinsh/atuin/releases/latest/download/atuin-installer.sh | ATUIN_NO_MODIFY_PATH=1 sh && \
+RUN curl --proto '=https' --tlsv1.3 -LsSf https://starship.rs/install.sh | sh -s -- --yes && \
+    curl --proto '=https' --tlsv1.3 -LsSf https://github.com/atuinsh/atuin/releases/latest/download/atuin-installer.sh | ATUIN_NO_MODIFY_PATH=1 sh && \
     mv ${HOME}/.atuin/bin/* "${HOME}/bin" && \
     rm -rf "${HOME}/.atuin" && \
     mkdir -p "${HOME}/.cache" "${HOME}/.local"
