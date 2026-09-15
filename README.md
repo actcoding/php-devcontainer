@@ -4,6 +4,7 @@
 
 ## Supported tags
 
+- 8.5
 - 8.4
 - 8.3
 - 8.2
@@ -29,8 +30,8 @@
 - zip
 - intl
 
-## Ready-to-use devcontainer template
+### Language Server
 
-We also maintain a ready-to-use devcontainer template repository for you to quickstart Php development.
+[phpactor/phpactor](https://github.com/phpactor/phpactor)
 
-The template lives in [actcoding/php-devcontainer-template](https://github.com/actcoding/php-devcontainer-template)
+The binary lives at `/opt/phpactor/bin/phpactor`
