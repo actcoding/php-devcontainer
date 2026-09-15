@@ -18,7 +18,7 @@ if [ -d "$INCLUDE_DIR" ]; then
   done
 fi
 
-export PATH="${HOME}/bin:${HOME}/.composer/vendor/bin:${PATH}"
+export PATH="${HOME}/.composer/vendor/bin:${HOME}/.local/bin:${PATH}"
 
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
