@@ -1,5 +1,17 @@
 ARG PHP_VERSION
 
+
+FROM rust:1-slim-bookworm AS phpantom_lsp
+
+ARG phpantom_lsp_version=0.11.1
+
+ADD https://github.com/PHPantom-dev/phpantom_lsp.git#${phpantom_lsp_version} /usr/local/src
+
+WORKDIR /usr/local/src
+
+RUN cargo build --release
+
+
 FROM php:${PHP_VERSION}-bookworm
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/install-php-extensions
