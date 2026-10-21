@@ -14,24 +14,25 @@
 ### Tools
 
 - zsh
+- nano
 - [atuin](https://atuin.sh/)
 - [starship](https://starship.rs/)
-- composer
-- nano
+- [composer](https://getcomposer.org/)
 
 ### Php Extensions
 
 - xdebug
+- redis
 - pgsql
 - pdo_pgsql
-- redis
 - opcache
 - pcntl
 - zip
 - intl
+- gd
 
 ### Language Server
 
-[phpactor/phpactor](https://github.com/phpactor/phpactor)
+[phpantom_lsp](https://github.com/PHPantom-dev/phpantom_lsp)
 
-The binary lives at `/opt/phpactor/bin/phpactor`
+The binary lives at `/usr/local/bin/phpantom_lsp`
