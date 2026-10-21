@@ -5,11 +5,13 @@ FROM rust:1-slim-bookworm AS phpantom_lsp
 
 ARG phpantom_lsp_version=0.11.1
 
-ADD https://github.com/PHPantom-dev/phpantom_lsp.git#${phpantom_lsp_version} /usr/local/src
+RUN apt-get update && \
+    apt-get install -y \
+        curl \
+    && \
+    curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
-WORKDIR /usr/local/src
-
-RUN cargo build --release
+RUN cargo binstall --no-confirm phpantom_lsp
 
 
 FROM php:${PHP_VERSION}-bookworm
@@ -18,7 +20,7 @@ ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/relea
 ADD --chmod=0755 https://github.com/php/pie/releases/latest/download/pie.phar /usr/local/bin/pie
 
 COPY rootfs /
-COPY --from=phpantom_lsp /usr/local/src/target/release/phpantom_lsp /usr/local/bin/phpantom_lsp
+COPY --from=phpantom_lsp /usr/local/cargo/bin/phpantom_lsp /usr/local/bin/phpantom_lsp
 
 RUN apt-get update && \
     apt-get -y install \
