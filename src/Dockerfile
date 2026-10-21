@@ -18,6 +18,7 @@ ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/relea
 ADD --chmod=0755 https://github.com/php/pie/releases/latest/download/pie.phar /usr/local/bin/pie
 
 COPY rootfs /
+COPY --from=phpantom_lsp /usr/local/src/target/release/phpantom_lsp /usr/local/bin/phpantom_lsp
 
 RUN apt-get update && \
     apt-get -y install \
