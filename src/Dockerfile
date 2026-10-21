@@ -2,7 +2,8 @@ ARG PHP_VERSION
 
 FROM php:${PHP_VERSION}-bookworm
 
-ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/install-php-extensions
+ADD --chmod=0755 https://github.com/php/pie/releases/latest/download/pie.phar /usr/local/bin/pie
 
 COPY rootfs /
 
@@ -20,11 +21,13 @@ RUN apt-get update && \
     && \
     locale-gen
 
-RUN install-php-extensions \
-        xdebug \
+RUN pie install \
+        xdebug/xdebug \
+        phpredis/phpredis \
+    && \
+    install-php-extensions \
         pgsql \
         pdo_pgsql \
-        redis \
         opcache \
         pcntl \
         zip \
